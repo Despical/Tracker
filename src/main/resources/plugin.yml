@@ -1,0 +1,7 @@
+name: SurvivalEssential
+author: Despical
+api-version: 1.16
+main: me.despical.survivalessential.Main
+version: 1.0.0
+commands:
+  tracker:
