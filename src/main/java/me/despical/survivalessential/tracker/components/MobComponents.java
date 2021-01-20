@@ -8,7 +8,6 @@ import me.despical.inventoryframework.pane.StaticPane;
 import me.despical.survivalessential.tracker.TrackerGui;
 import me.despical.survivalessential.tracker.TrackerTask;
 import me.despical.survivalessential.user.User;
-import me.despical.survivalessential.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -40,7 +39,7 @@ public class MobComponents implements TrackerComponent {
 
 		page.addItem(new GuiItem(new ItemBuilder(Material.ARROW).name("&aGo Back").lore("&7To tracker menu").build(), e -> {
 			pane.setPage(0);
-			gui.setTitle(Utils.color("&8Select an entity type to track"));
+			gui.setTitle("&8Select an entity type to track");
 			gui.setRows(3);
 			gui.update();
 		}),8, 5);

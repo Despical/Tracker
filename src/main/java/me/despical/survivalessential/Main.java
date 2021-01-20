@@ -13,7 +13,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -55,7 +54,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
 	}
 
 	@Override
-	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
 			return false;
 		}
@@ -97,7 +96,6 @@ public class Main extends JavaPlugin implements CommandExecutor {
 			task.start();
 			user.setTrackerTask(task);
 		} else {
-			entity.setGlowing(false);
 			task.cancel();
 			user.setTrackerTask(null);
 		}

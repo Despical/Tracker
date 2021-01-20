@@ -23,10 +23,12 @@ public class ExceptionLogHandler extends Handler {
 	}
 
 	@Override
-	public void close() throws SecurityException {}
+	public void close() throws SecurityException {
+	}
 
 	@Override
-	public void flush() {}
+	public void flush() {
+	}
 
 	@Override
 	public void publish(LogRecord record) {
@@ -41,12 +43,12 @@ public class ExceptionLogHandler extends Handler {
 		}
 
 		if (throwable.getCause() != null && throwable.getCause().getStackTrace() != null) {
-			if (!throwable.getCause().getStackTrace()[0].getClassName().contains("me.despical.kotl")) {
+			if (!throwable.getCause().getStackTrace()[0].getClassName().contains("me.despical.tracker")) {
 				return;
 			}
 		}
 
-		if (!throwable.getStackTrace()[0].getClassName().contains("me.despical.kotl")) {
+		if (!throwable.getStackTrace()[0].getClassName().contains("me.despical.tracker")) {
 			return;
 		}
 
@@ -69,19 +71,17 @@ public class ExceptionLogHandler extends Handler {
 			stacktrace.append(str.toString()).append("\n");
 		}
 
-		plugin.getLogger().log(Level.WARNING, "[Reporter service] <<-----------------------------[START]----------------------------->>");
+		plugin.getLogger().log(Level.WARNING, "[Reporter Service] <<-----------------------------[START]----------------------------->>");
 		plugin.getLogger().log(Level.WARNING, stacktrace.toString());
-		plugin.getLogger().log(Level.WARNING, "[Reporter service] <<------------------------------[END]------------------------------>>");
+		plugin.getLogger().log(Level.WARNING, "[Reporter Service] <<------------------------------[END]------------------------------>>");
 
-		record.setMessage("[Survival Essential] We have found a bug in the code. Please contact Despical or Breakthrough with the following error given above!");
+		record.setMessage("[Tracker] We have found a bug in the code. Please contact Despical or Breakthrough with the following error given above!");
 	}
 
 	private boolean containsBlacklistedClass(Throwable throwable) {
 		for (StackTraceElement element : throwable.getStackTrace()) {
-			for (String blacklist : new String[] {"me.despical.utils.commonsbox.database.MysqlDatabase"}) {
-				if (element.getClassName().contains(blacklist)) {
-					return true;
-				}
+			if (element.getClassName().contains("me.despical.utils.commonsbox.database.MysqlDatabase")) {
+				return true;
 			}
 		}
 

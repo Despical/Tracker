@@ -60,6 +60,15 @@ public class TrackerTask extends BukkitRunnable {
 		runTaskTimer(plugin, 5L, 5L);
 	}
 
+	@Override
+	public synchronized void cancel() throws IllegalStateException {
+		if (entity != null) {
+			entity.setGlowing(false);
+		}
+
+		super.cancel();
+	}
+
 	public void setEntity(Entity entity) {
 		this.entity = entity;
 	}

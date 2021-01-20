@@ -3,6 +3,7 @@ package me.despical.survivalessential.tracker.components;
 import me.despical.commonsbox.compat.XMaterial;
 import me.despical.commonsbox.item.ItemBuilder;
 import me.despical.commonsbox.item.ItemUtils;
+import me.despical.commonsbox.scoreboard.common.Strings;
 import me.despical.inventoryframework.Gui;
 import me.despical.inventoryframework.GuiItem;
 import me.despical.inventoryframework.pane.PaginatedPane;
@@ -10,7 +11,6 @@ import me.despical.inventoryframework.pane.StaticPane;
 import me.despical.survivalessential.tracker.TrackerGui;
 import me.despical.survivalessential.tracker.TrackerTask;
 import me.despical.survivalessential.user.User;
-import me.despical.survivalessential.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
@@ -48,7 +48,7 @@ public class PlayerComponent implements TrackerComponent {
 
 		page.addItem(new GuiItem(new ItemBuilder(Material.ARROW).name("&aGo Back").lore("&7To tracker menu").build(), e -> {
 			pane.setPage(0);
-			gui.setTitle(Utils.color("&8Select an entity type to track"));
+			gui.setTitle("&8Select an entity type to track");
 			gui.setRows(3);
 			gui.update();
 		}),8, 2);
@@ -67,7 +67,7 @@ public class PlayerComponent implements TrackerComponent {
 				ItemStack skull = XMaterial.PLAYER_HEAD.parseItem();
 				SkullMeta meta = (SkullMeta) skull.getItemMeta();
 				meta = ItemUtils.setPlayerHead(player, meta);
-				meta.setDisplayName(Utils.color("&cPlayer Tracker"));
+				meta.setDisplayName(Strings.format("&cPlayer Tracker"));
 				meta.setLore(getTrackMessage(player.getName()));
 				skull.setDurability((short) SkullType.PLAYER.ordinal());
 				skull.setItemMeta(meta);
@@ -127,9 +127,9 @@ public class PlayerComponent implements TrackerComponent {
 		TrackerTask task = trackerGui.getPlugin().getUserManager().getUser(trackerGui.getPlayer()).getTrackerTask();
 
 		if (task != null) {
-			return Arrays.asList(Utils.color("&7RIGHT CLICK to make player " + (task.getEntity().isGlowing() ? "not" : "") + " glow."), Utils.color("&7Click to untrack &b" + name + "&7!"));
+			return Arrays.asList(Strings.format("&7RIGHT CLICK to make player " + (task.getEntity().isGlowing() ? "not" : "") + " glow."), Strings.format("&7Click to untrack &b" + name + "&7!"));
 		}
 
-		return Collections.singletonList(Utils.color("&7Click to track " + name + "!"));
+		return Collections.singletonList(Strings.format("&7Click to track " + name + "!"));
 	}
 }

@@ -12,10 +12,6 @@ import org.bukkit.util.Vector;
  */
 public class Utils {
 
-	public static String color(String str) {
-		return ChatColor.translateAlternateColorCodes('&', str);
-	}
-
 	public static String getCardinalDirection(Player player) {
 		Location origin = player.getLocation().clone();
 		Vector target = player.getCompassTarget().toVector();

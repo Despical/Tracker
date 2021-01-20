@@ -27,20 +27,8 @@ public class QuitEvent implements Listener {
 		User user = plugin.getUserManager().getUser(event.getPlayer());
 		TrackerTask task = user.getTrackerTask();
 
-		for (User u : plugin.getUserManager().getUsers()) {
-			if (u.getTrackerTask() != null) {
-				if (u.getTrackerTask().getEntity() != null && u.getTrackerTask().getEntity().equals(event.getPlayer())) {
-					u.getTrackerTask().getEntity().setGlowing(false);
-					u.getTrackerTask().cancel();
-				}
-			}
-		}
-
 		if (task != null) {
-			if (task.getEntity() != null) {
-				task.getEntity().setGlowing(false);
-				task.cancel();
-			}
+			task.cancel();
 		}
 
 		plugin.getUserManager().removeUser(user);

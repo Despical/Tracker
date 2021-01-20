@@ -6,7 +6,6 @@ import me.despical.survivalessential.Main;
 import me.despical.survivalessential.tracker.components.MainComponent;
 import me.despical.survivalessential.tracker.components.MobComponents;
 import me.despical.survivalessential.tracker.components.PlayerComponent;
-import me.despical.survivalessential.utils.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,7 +27,7 @@ public class TrackerGui {
 	}
 
 	private void prepareGui() {
-		this.gui = new Gui(plugin, 3, Utils.color("&8Select an entity type to track"));
+		this.gui = new Gui(plugin, 3, "&8Select an entity type to track");
 		this.gui.setOnGlobalClick(e -> e.setCancelled(true));
 
 		PaginatedPane pane = new PaginatedPane(9, 3);
